@@ -529,37 +529,105 @@ body {
     text-decoration: underline;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* モバイル専用要素を表示制御 */
+.mobile-only {
+    display: none;
+}
+
+/* Responsive / Mobile Optimization */
+@media (max-width: 768px) {
+    .mobile-only {
+        display: block;
+    }
+
     body {
-        overflow: auto;
-        /* Revert to normal scroll on small screens */
+        overflow-y: auto !important;
+        /* スマホでは全体スクロールを許可 */
     }
 
     .app-container {
+        padding: 10px;
         height: auto;
-        display: block;
     }
 
     .main-content {
         flex-direction: column;
+        gap: 16px;
         overflow: visible;
     }
 
-    .selection-panel,
+    .selection-panel {
+        max-width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: 400px;
+    }
+
     .calculation-panel {
         max-width: 100%;
-        overflow: visible;
-        margin-bottom: 20px;
+        width: 100%;
     }
 
     .panel-content {
-        overflow: visible;
-        height: auto;
+        padding: 16px;
     }
 
-    .search-area {
-        position: relative;
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+
+    /* タッチ操作の向上（ボタンを大きく） */
+    .add-btn,
+    .remove-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+    }
+
+    .dosage-g-input {
+        width: 80px !important;
+        padding: 8px !important;
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-header h1 {
+        font-size: 1.35rem;
+    }
+
+    .subtitle {
+        font-size: 0.8rem;
+    }
+
+    .medicine-item {
+        margin: 6px 0;
+        padding: 14px 10px;
+    }
+
+    .selected-item {
+        padding: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-controls {
+        width: 100%;
+        justify-content: space-between !important;
+        margin-left: 0;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+
+    .results-table {
+        font-size: 0.85rem;
+    }
+
+    .secondary-btn,
+    .text-button {
+        padding: 12px 18px;
+        font-size: 0.95rem;
     }
 }
 
