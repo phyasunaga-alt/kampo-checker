@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>漢方鑑査アシスト</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- キャッシュ対策 -->
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -112,18 +113,20 @@
                             <!-- Warnings will be injected here -->
                         </div>
 
-                        <table class="results-table">
-                            <thead>
-                                <tr>
-                                    <th>生薬名</th>
-                                    <th>合計 (g)</th>
-                                    <th>状態</th>
-                                </tr>
-                            </thead>
-                            <tbody id="results-body">
-                                <!-- Results will be populated here -->
-                            </tbody>
-                        </table>
+                        <div class="results-table-wrapper">
+                            <table class="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>生薬名</th>
+                                        <th>合計 (g)</th>
+                                        <th>状態</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="results-body">
+                                    <!-- Results will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </section>
