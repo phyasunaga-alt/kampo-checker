@@ -557,10 +557,44 @@ body {
     }
 
     .selection-panel {
-        max-width: 100%;
-        min-width: 0;
-        height: auto;
-        min-height: 400px;
+        display: none;
+        /* デフォルトで非表示 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100% !important;
+        z-index: 1000;
+        border-radius: 0;
+        box-shadow: none;
+        background: white;
+    }
+
+    .selection-panel.is-open {
+        display: flex;
+        animation: slideInUp 0.3s ease forwards;
+    }
+
+    .selection-panel .panel-content {
+        padding-top: 60px;
+        /* 閉じるボタン用のスペース */
+    }
+
+    /* パネル内の閉じるボタン用スタイル（JSで動的に追加可能だがCSSでも用意） */
+    .mobile-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 1010;
+        background: #f0f0f0;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .calculation-panel {
@@ -588,6 +622,16 @@ body {
         width: 80px !important;
         padding: 8px !important;
         font-size: 1rem !important;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
     }
 }
 

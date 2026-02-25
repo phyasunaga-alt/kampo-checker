@@ -24,6 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial Render
     renderMedicineList(medicines);
+    initMobileToggle();
+
+    // モバイル用トグル制御
+    function initMobileToggle() {
+        const toggleBtn = document.getElementById('toggle-search');
+        const selectionPanel = document.querySelector('.selection-panel');
+        if (!toggleBtn || !selectionPanel) return;
+
+        // パネル内に閉じるボタンを動的に追加（モバイル時のみ有効）
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'mobile-close-btn mobile-only';
+        closeBtn.innerHTML = '✕';
+        closeBtn.addEventListener('click', () => {
+            selectionPanel.classList.remove('is-open');
+            document.body.style.overflow = ''; // スクロール復帰
+        });
+        selectionPanel.appendChild(closeBtn);
+
+        toggleBtn.addEventListener('click', () => {
+            selectionPanel.classList.add('is-open');
+            document.body.style.overflow = 'hidden'; // 背後のスクロールを止める
+            searchInput.focus();
+        });
+    }
 
     function renderMedicineList(items) {
         currentFilteredMedicines = items;
@@ -123,6 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedMedicines.push({ ...med, current_g: med.daily_dose_g });
         renderSelectedMedicines();
         calculateResults();
+
+        // モバイル版なら追加後にパネルを自動で閉じる
+        const selectionPanel = document.querySelector('.selection-panel');
+        if (window.innerWidth <= 768 && selectionPanel.classList.contains('is-open')) {
+            selectionPanel.classList.remove('is-open');
+            document.body.style.overflow = '';
+        }
     }
 
     // Remove Medicine
